@@ -35,10 +35,11 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-background">
-            <video class="hero-video" autoplay muted loop playsinline preload="auto" webkit-playsinline>
-                <source src="movie.mp4" type="video/mp4">
-                <!-- Fallback for browsers that don't support video -->
-                お使いのブラウザは動画をサポートしていません。
+            <video class="hero-video" autoplay muted loop playsinline preload="auto" webkit-playsinline poster="yakiimo_prf.png">
+                <source src="movie.mp4" type="video/mp4" media="(min-width: 769px)">
+                <source src="movie.mp4" type="video/mp4" media="(max-width: 768px)">
+                <!-- Fallback image for unsupported browsers -->
+                <img src="yakiimo_prf.png" alt="AIクリエイターズ・スタジオ背景画像" class="hero-fallback-img">
             </video>
             <div class="hero-overlay"></div>
             <div class="hero-gradient"></div>
@@ -454,6 +455,90 @@
                     <p>GPTs250個以上の制作実績</p>
                     <p>AIコンテンツ600部以上の販売実績</p>
                     <p>GPTs部門賞・新人賞（教えて.AI by GMO）</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-label">FAQ</span>
+                <h2 class="section-title">よくある質問</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">AIクリエイターズ・スタジオはどんな人におすすめですか？</span>
+                        <span class="material-symbols-outlined faq-icon">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>文章を書くのが苦手、話すのが苦手、アイデアをまとめるのが苦手...そんな「ちょっとした苦手」を抱えている方におすすめです。AIを使って創作活動を始めたい方、GPTsで収益化を目指す方にもぴったりです。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">どのくらいの頻度で更新されますか？</span>
+                        <span class="material-symbols-outlined faq-icon">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>毎週水曜日に定期更新しています。1〜2本の記事を配信し、AI最新トレンドやGPTsの活用法、マインドセットなど、実践的な内容をお届けします。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">みんなのスタジオプランの定員はありますか？</span>
+                        <span class="material-symbols-outlined faq-icon">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>はい、質の高いコミュニティを維持するため、毎月5名限定とさせていただいています。定員に達した場合は、翌月の募集をお待ちください。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">AI初心者でも大丈夫ですか？</span>
+                        <span class="material-symbols-outlined faq-icon">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>もちろん大丈夫です！むしろ初心者の方にこそ参加していただきたいと思っています。基礎から応用まで、段階的に学べるコンテンツを用意しています。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">退会はいつでもできますか？</span>
+                        <span class="material-symbols-outlined faq-icon">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>はい、いつでも退会可能です。noteのメンバーシップ設定から簡単に退会手続きができます。日割り計算はありませんので、月末での退会がおすすめです。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">自力で思い通りのGPTsを作るレッスン形式の記事はありますか？</span>
+                        <span class="material-symbols-outlined faq-icon">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>はい、あります！GPTsの始め方から作り方（初心者向け）、ナレッジ活用（中級者向け）、API連携（上級者向け）まで、段階的に学べるレッスン形式の記事を用意しています。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">どのようなAIを学べますか？</span>
+                        <span class="material-symbols-outlined faq-icon">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>主にOpenAIのGPTs、Claude、Gemini等の生成AIの活用法を学べます。特にGPTsの作成と収益化、プロンプトエンジニアリング、AI作品の販売戦略などを実践的に解説しています。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">ワークショップの頻度はどのくらいですか？</span>
+                        <span class="material-symbols-outlined faq-icon">expand_more</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>月1回のグループ活動会を開催しています。みんなのスタジオプラン以上の方が参加でき、実践的なワークショップや情報交換を行います。</p>
+                    </div>
                 </div>
             </div>
         </div>

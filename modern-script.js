@@ -464,6 +464,89 @@ mobileStyles.textContent = `
 `;
 document.head.appendChild(mobileStyles);
 
+// Video performance optimization
+function optimizeVideoPlayback() {
+    const video = document.querySelector('.hero-video');
+    const overlay = document.querySelector('.hero-overlay');
+    
+    if (!video) return;
+
+    // Check for save-data mode or slow connection
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const isSaveData = connection && connection.saveData;
+    const isSlowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
+    
+    // Switch to static background if connection is poor
+    if (isSaveData || isSlowConnection) {
+        video.style.display = 'none';
+        document.body.classList.add('static-bg-mode');
+        
+        // Create static background
+        const staticBg = document.createElement('div');
+        staticBg.className = 'hero-static-bg';
+        staticBg.style.cssText = `
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #6aa84f 0%, #7eb12b 100%);
+            z-index: -1;
+        `;
+        video.parentNode.insertBefore(staticBg, video);
+    }
+
+    // Handle video loading errors
+    video.addEventListener('error', () => {
+        console.log('Video loading failed, switching to static background');
+        video.style.display = 'none';
+        document.body.classList.add('static-bg-mode');
+    });
+
+    // Lazy load video for better performance
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                video.load();
+                observer.unobserve(video);
+            }
+        });
+    });
+    
+    observer.observe(video);
+}
+
+// Initialize video optimization when page loads
+document.addEventListener('DOMContentLoaded', optimizeVideoPlayback);
+
+// FAQ Accordion functionality
+function initFAQAccordion() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const faqItem = question.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+            });
+            
+            // Toggle current item
+            if (!isActive) {
+                faqItem.classList.add('active');
+                question.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+}
+
+// Initialize FAQ when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initFAQAccordion();
+});
+
 console.log('AI Creators Studio Landing Page - Modern JavaScript loaded successfully! 🚀');
 
 // Video debugging

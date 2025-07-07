@@ -18,6 +18,9 @@
             <a href="#" class="nav-logo">
                 <span class="logo-text">AIクリエイターズ・スタジオ</span>
             </a>
+            <button class="nav-toggle" aria-label="メニューを開く">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
             <div class="nav-menu">
                 <a href="#about" class="nav-link">コンセプト</a>
                 <a href="#contents" class="nav-link">コンテンツ</a>
@@ -32,10 +35,10 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-background">
-            <video class="hero-video" autoplay muted loop playsinline preload="auto">
+            <video class="hero-video" autoplay muted loop playsinline preload="auto" webkit-playsinline>
                 <source src="movie.mp4" type="video/mp4">
-                <source src="movie.mp4" type="video/webm">
-                Your browser does not support the video tag.
+                <!-- Fallback for browsers that don't support video -->
+                お使いのブラウザは動画をサポートしていません。
             </video>
             <div class="hero-overlay"></div>
             <div class="hero-gradient"></div>

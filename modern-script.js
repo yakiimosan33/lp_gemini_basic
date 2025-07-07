@@ -388,22 +388,49 @@ const debouncedScroll = debounce(() => {
 
 window.addEventListener('scroll', debouncedScroll);
 
-// Enhanced mobile menu (if needed)
-const navToggle = document.createElement('button');
-navToggle.innerHTML = '☰';
-navToggle.className = 'nav-toggle';
-navToggle.style.cssText = `
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--neutral-900);
-    cursor: pointer;
-    
-    @media (max-width: 768px) {
-        display: block;
-    }
-`;
+// Mobile navigation functionality
+const navToggle = document.querySelector('.nav-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        
+        // Update aria-label for accessibility
+        const isOpen = navMenu.classList.contains('active');
+        navToggle.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+        
+        // Change icon
+        const icon = navToggle.querySelector('.material-symbols-outlined');
+        if (icon) {
+            icon.textContent = isOpen ? 'close' : 'menu';
+        }
+    });
+
+    // Close menu when clicking on links
+    document.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            navToggle.setAttribute('aria-label', 'メニューを開く');
+            const icon = navToggle.querySelector('.material-symbols-outlined');
+            if (icon) {
+                icon.textContent = 'menu';
+            }
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+            navMenu.classList.remove('active');
+            navToggle.setAttribute('aria-label', 'メニューを開く');
+            const icon = navToggle.querySelector('.material-symbols-outlined');
+            if (icon) {
+                icon.textContent = 'menu';
+            }
+        }
+    });
+}
 
 // Add mobile menu styles
 const mobileStyles = document.createElement('style');

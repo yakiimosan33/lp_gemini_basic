@@ -152,6 +152,16 @@ body {
     color: var(--primary-600);
 }
 
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--neutral-900);
+    cursor: pointer;
+    padding: var(--spacing-2);
+}
+
 .nav-menu {
     display: flex;
     align-items: center;
@@ -1149,7 +1159,7 @@ body {
 .cta-section {
     background: linear-gradient(135deg, var(--primary-600), var(--primary-800));
     color: white;
-    padding: var(--spacing-24) 0;
+    padding: var(--spacing-32) 0;
     text-align: center;
 }
 
@@ -1162,25 +1172,26 @@ body {
 .cta-title {
     font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: var(--spacing-6);
+    margin-bottom: var(--spacing-12);
     line-height: 1.2;
 }
 
 .cta-description {
     font-size: 1.25rem;
-    margin-bottom: var(--spacing-8);
+    margin-bottom: var(--spacing-12);
     opacity: 0.9;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 .cta-description p {
-    margin-bottom: var(--spacing-2);
+    margin-bottom: var(--spacing-4);
 }
 
 .cta-emphasis {
     font-weight: 600;
     font-size: 1.375rem;
-    margin-bottom: var(--spacing-8);
+    margin-top: var(--spacing-8);
+    margin-bottom: var(--spacing-12);
 }
 
 /* Link hover effect for inline links */
@@ -1315,41 +1326,98 @@ a.floating-card-link:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    /* Hide video on mobile for performance */
+    /* Optimize video for mobile */
     .hero-video {
-        display: none;
+        display: block;
     }
     
-    /* Stronger overlay on mobile when no video */
+    /* Overlay for better text readability on mobile */
     .hero-overlay {
-        background: rgba(251, 253, 246, 0.95);
+        background: rgba(251, 253, 246, 0.85);
     }
+    
     :root {
         --grid-margin: 1rem;
+        --spacing-32: 3rem;
+        --spacing-24: 2rem;
+        --spacing-20: 1.5rem;
+        --spacing-16: 1.25rem;
+        --spacing-12: 1rem;
+        --spacing-8: 0.75rem;
+    }
+
+    /* Mobile Navigation */
+    .nav-toggle {
+        display: block;
     }
 
     .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(251, 253, 246, 0.98);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--neutral-200);
+        border-radius: 0 0 16px 16px;
+        padding: var(--spacing-4);
+        flex-direction: column;
         gap: var(--spacing-4);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
     }
 
     .nav-link {
-        display: none;
+        display: block;
+        padding: var(--spacing-3) 0;
+        text-align: center;
+        border-bottom: 1px solid var(--neutral-200);
+        width: 100%;
+    }
+
+    .nav-link:last-of-type {
+        border-bottom: none;
+    }
+
+    .nav-cta {
+        margin-top: var(--spacing-2);
+        align-self: center;
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        line-height: 1.2;
+        margin-bottom: var(--spacing-6);
     }
 
     .title-sub {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
+    }
+
+    .title-main {
+        font-size: 1.75rem;
     }
 
     .hero-lead {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
+        margin-bottom: var(--spacing-4);
     }
 
     .hero-description {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        margin-bottom: var(--spacing-6);
+    }
+
+    .hero-content {
+        padding: 0 var(--spacing-4);
     }
 
     .hero-actions {
@@ -1358,7 +1426,19 @@ a.floating-card-link:hover {
     }
 
     .section-title {
-        font-size: 2rem;
+        font-size: 1.75rem;
+        line-height: 1.3;
+        margin-bottom: var(--spacing-8);
+    }
+
+    .section-header {
+        margin-bottom: var(--spacing-12);
+        padding: 0 var(--spacing-4);
+    }
+
+    .section-label {
+        font-size: 0.75rem;
+        margin-bottom: var(--spacing-2);
     }
 
     .story-grid {
@@ -1369,8 +1449,32 @@ a.floating-card-link:hover {
     .achievement-grid,
     .content-grid,
     .theme-grid,
-    .plans-grid {
+    .plans-grid,
+    .magazine-grid {
         grid-template-columns: 1fr;
+        gap: var(--spacing-6);
+        padding: 0 var(--spacing-4);
+    }
+
+    .achievement-card,
+    .content-card,
+    .theme-card,
+    .plan-card,
+    .magazine-card {
+        margin-bottom: var(--spacing-4);
+    }
+
+    .magazine-thumbnail {
+        height: 120px;
+    }
+
+    .floating-card {
+        padding: var(--spacing-3);
+        margin-bottom: var(--spacing-3);
+    }
+
+    .floating-card .card-number {
+        font-size: 1.5rem;
     }
 
     .plan-featured {
@@ -1386,12 +1490,33 @@ a.floating-card-link:hover {
         gap: var(--spacing-4);
     }
 
+    .contact-link {
+        padding: var(--spacing-3);
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .cta-title {
-        font-size: 2rem;
+        font-size: 1.75rem;
+        line-height: 1.3;
     }
 
     .cta-description {
-        font-size: 1.125rem;
+        font-size: 1rem;
+        padding: 0 var(--spacing-4);
+    }
+
+    .btn {
+        min-height: 48px;
+        padding: var(--spacing-3) var(--spacing-6);
+        font-size: 1rem;
+    }
+
+    .btn-large {
+        min-height: 56px;
+        padding: var(--spacing-4) var(--spacing-8);
     }
 
     .floating-card {

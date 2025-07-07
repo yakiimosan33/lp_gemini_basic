@@ -199,14 +199,35 @@ body {
 .hero-background {
     position: absolute;
     inset: 0;
-    z-index: -1;
+    z-index: 0; /* Changed from -1 to 0 */
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 1; /* Changed from -2 to 1 */
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(251, 253, 246, 0.6); /* Reduced opacity from 0.9 to 0.6 */
+    z-index: 2; /* Changed from -1 to 2 */
 }
 
 .hero-gradient {
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg, var(--primary-100) 0%, var(--neutral-100) 100%);
-    opacity: 0.8;
+    opacity: 0.3; /* Reduced opacity from 0.8 to 0.3 */
+    z-index: 3; /* Added z-index */
 }
 
 .hero-pattern {
@@ -215,6 +236,7 @@ body {
     background-image: radial-gradient(circle at 25% 25%, rgba(99, 143, 61, 0.1) 0%, transparent 50%),
                       radial-gradient(circle at 75% 75%, rgba(126, 177, 43, 0.1) 0%, transparent 50%);
     animation: float 20s ease-in-out infinite;
+    z-index: 4; /* Added z-index */
 }
 
 @keyframes float {
@@ -224,7 +246,7 @@ body {
 
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 10; /* Changed from 1 to 10 to ensure it's above all background layers */
     text-align: center;
     margin-bottom: var(--spacing-16);
 }
@@ -321,6 +343,7 @@ body {
     position: relative;
     height: 300px;
     margin-top: var(--spacing-16);
+    z-index: 10; /* Added z-index to ensure cards are above background */
 }
 
 .floating-card {
@@ -753,6 +776,12 @@ body {
     margin-bottom: var(--spacing-3);
     color: var(--neutral-600);
     line-height: 1.6;
+    white-space: normal;
+}
+
+.content-list li a {
+    display: inline;
+    white-space: nowrap;
 }
 
 .content-list li::before {
@@ -1127,6 +1156,7 @@ body {
 .cta-content {
     max-width: 800px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .cta-title {
@@ -1151,6 +1181,27 @@ body {
     font-weight: 600;
     font-size: 1.375rem;
     margin-bottom: var(--spacing-8);
+}
+
+/* Link hover effect for inline links */
+.achievement-title a:hover,
+.card-label a:hover,
+.content-list a:hover {
+    opacity: 0.8;
+    text-decoration: underline !important;
+}
+
+/* Clickable card links */
+a.achievement-card-link,
+a.floating-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+a.achievement-card-link:hover,
+a.floating-card-link:hover {
+    text-decoration: none;
 }
 
 /* Footer */
@@ -1204,6 +1255,13 @@ body {
 .copyright {
     color: var(--neutral-500);
     font-size: 0.875rem;
+    margin-bottom: var(--spacing-2);
+}
+
+.ai-credit {
+    color: var(--neutral-400);
+    font-size: 0.75rem;
+    font-style: italic;
 }
 
 /* Profile Section */
@@ -1257,6 +1315,15 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Hide video on mobile for performance */
+    .hero-video {
+        display: none;
+    }
+    
+    /* Stronger overlay on mobile when no video */
+    .hero-overlay {
+        background: rgba(251, 253, 246, 0.95);
+    }
     :root {
         --grid-margin: 1rem;
     }

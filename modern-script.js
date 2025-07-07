@@ -438,3 +438,30 @@ mobileStyles.textContent = `
 document.head.appendChild(mobileStyles);
 
 console.log('AI Creators Studio Landing Page - Modern JavaScript loaded successfully! 🚀');
+
+// Video debugging
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.querySelector('.hero-video');
+    if (video) {
+        console.log('Video element found');
+        
+        video.addEventListener('loadeddata', () => {
+            console.log('Video loaded successfully');
+        });
+        
+        video.addEventListener('error', (e) => {
+            console.error('Video loading error:', e);
+        });
+        
+        video.addEventListener('canplay', () => {
+            console.log('Video can play');
+        });
+        
+        // Check video properties
+        console.log('Video source:', video.querySelector('source').src);
+        console.log('Video readyState:', video.readyState);
+        console.log('Video networkState:', video.networkState);
+    } else {
+        console.error('Video element not found');
+    }
+});

@@ -375,6 +375,12 @@ body.static-bg-mode .hero-overlay {
 
 .announcement-text {
     letter-spacing: 0.025em;
+    color: white;
+    text-decoration: none;
+}
+
+a.announcement-text:hover {
+    text-decoration: underline;
 }
 
 @keyframes pulse-glow {
